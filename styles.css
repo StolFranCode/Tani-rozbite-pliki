@@ -154,23 +154,16 @@ header {
   line-height: 1;
 }
 
-/* === NAV GLOBALNIE === */
+/* === NAV (Zabezpieczony układ z wyśrodkowanym koszykiem) === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
-}
-
-.nav-links {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  align-items: stretch;
+  align-items: center;
 }
 
-/* Wspólny styl dla odnośników, przycisku auth i przycisku koszyka */
-.nav-links a,
-.auth-btn,
-.koszyk-btn {
+nav a {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -178,84 +171,28 @@ nav {
   color: var(--yellow);
   text-decoration: none;
   padding: 14px 24px;
-  background: transparent;
-  border: none;
-  border-right: 2px solid rgba(255, 255, 255, 0.15);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 100%;
+  border-right: 2px solid rgba(255,255,255,0.15);
   transition: background 0.15s, color 0.15s;
-  border-radius: 0; /* Reset styli mobilnych */
 }
 
-/* Efekt hover dla wszystkich elementów w menu */
-.nav-links a:hover,
-.auth-btn:hover,
-.koszyk-btn:hover {
+nav a:hover {
   background: var(--yellow);
   color: var(--black);
 }
 
-/* ⚠️ KLUCZOWY TRIK: Popycha przycisk logowania i wszystko za nim na prawą stronę */
-.auth-btn {
-  margin-left: auto; 
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
-/* Kontener na koszyk – dbamy, by dziedziczył pełną wysokość */
 .nav-koszyk {
+  margin-left: auto;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  margin: 0 !important;
-  position: static !important;
-  transform: none !important;
+  gap: 8px;
 }
-
-/* Licznik koszyka dopasowany do brutalistycznego stylu */
-.koszyk-licznik {
-  background: var(--black);
-  color: var(--yellow);
-  border: 1px solid var(--yellow);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Special Elite', monospace;
-}
-.koszyk-licznik.widoczny { display: flex; }
-
-/* Dynamiczna zmiana kolorów licznika przy hoverze na przycisk koszyka */
-.koszyk-btn:hover .koszyk-licznik {
-  background: var(--red);
-  color: #fff;
-  border-color: var(--red);
-}
-
-/* === RESPNSYWNOŚĆ (Modyfikacja RWD) === */
-@media (max-width: 720px) {
-  .nav-links {
-    flex-direction: column;
-  }
-  .nav-links a,
-  .auth-btn,
-  .koszyk-btn {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    justify-content: center;
-    width: 100%;
-    padding: 12px 16px;
-  }
-  /* Na telefonach wyłączamy popychanie do prawej, żeby układało się równo w kolumnie */
-  .auth-btn {
-    margin-left: 0;
-  }
-  .nav-koszyk {
-    width: 100%;
-  }
 
 /* === SECTIONS === */
 section {
