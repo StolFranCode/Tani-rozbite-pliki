@@ -85,25 +85,26 @@ header {
 
 .header-inner {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center; /* KLUCZOWE: Popycha cały blok logo idealnie na środek baneru */
+  align-items: center;
   max-width: 100%;
-  position: relative; 
+  position: relative;     /* Trzyma odznakę w ryzach absolutnego pozycjonowania */
 }
 
 /* === WYŚRODKOWANE I POWIĘKSZONE LOGO === */
 .logo-block {
   display: flex;
   flex-direction: column;
-  align-items: center; /* KLUCZOWE: Środkuje logo i napis względem siebie */
-  z-index: 10; 
+  align-items: center;    /* Środkuje obrazek i tekst w pionowej osi */
+  text-align: center;
+  z-index: 10;
   margin-bottom: 10px;
 }
 
 .logo-main-link {
   display: block;
   line-height: 0;
-  margin-bottom: 15px;
+  margin-bottom: 20px;   /* Przestrzeń między logotypem a linią podpisu */
   text-decoration: none;
   transition: transform 0.15s ease-in-out;
 }
@@ -113,33 +114,32 @@ header {
 }
 
 .header-logo-img {
-  height: 250px !important; /* Wymusza 240px wysokości (wcześniej było 160px) */
-  width: auto !important;   /* Automatycznie skaluje szerokość, aby nie spłaszczyć owalu */
+  height: 250px !important;    /* Duży, mięsisty rozmiar zgodnie z planem (+50%) */
+  width: auto !important;      /* Pilnuje, by owal nie został zniekształcony */
   display: block !important;
-  max-width: none !important; /* Resetuje ewentualne blokady typu max-width: 100% z innych klas */
+  max-width: none !important;
   background: transparent !important;
-  
 }
 
 .logo-tagline {
   font-family: 'Special Elite', monospace;
-  font-size: clamp(12px, 2vw, 16px);
+  font-size: clamp(14px, 2vw, 18px); /* Delikatnie podbity rozmiar dla lepszego balansu */
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--black);
-  padding: 6px 0;
+  padding: 6px 15px;          /* Dodany padding boczny, by linie ramki ładnie wystawały poza tekst */
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
-  background: var(--yellow); 
+  background: var(--yellow);
   margin-top: 5px;
-  text-align: center; /* Centrowanie tekstu wewnątrz linii */
+  display: inline-block;       /* Sprawia, że linie dopasowują się do długości tekstu */
 }
 
 /* === ODZNAKA "OD 1999" W PRAWYM GÓRNYM ROGU === */
 .header-badge {
   position: absolute;
   top: -10px;  
-  right: 0;    
+  right: 0;    /* Przyklejona do prawej strony, podczas gdy środek baneru należy do logo */
   z-index: 5;
 }
 
