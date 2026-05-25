@@ -63,10 +63,11 @@ body {
 
 /* === HEADER / SZYLD === */
 header {
-  position: relative; /* Baza do pozycjonowania odznaki w prawym rogu */
   background: var(--yellow);
-  padding: 30px 40px 0px 40px; 
-  overflow: visible; /* Pozwala logo wystawać poza żółty pasek i nachodzić na menu */
+  border-bottom: var(--border-thick);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .header-stripes {
@@ -77,55 +78,31 @@ header {
     var(--yellow) 20px, var(--yellow) 40px
   );
   border-bottom: var(--border);
-  margin-left: -40px;  
-  margin-right: -40px;
-  margin-top: -30px;
-  margin-bottom: 30px;
 }
 
 .header-inner {
+  padding: 32px 40px 28px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  max-width: 100%;
-  position: relative; 
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* === POPRAWIONE EMBLEMATOWE LOGO === */
 .logo-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  z-index: 10; /* Wyciąga całe logo nad pasek nawigacji */
+  gap: 4px;
 }
 
-.logo-main-link {
-  display: block;
-  line-height: 0;
-  margin-bottom: 15px;
-  text-decoration: none;
-  transition: transform 0.15s ease-in-out;
-}
-
-.logo-main-link:hover {
-  transform: scale(1.03); 
-}
-
-.header-logo-img {
-  height: 160px;       /* Stabilna, potężna wysokość */
-  width: 240px;        /* Dokładne proporcje owalu logo.png, żeby object-fit działał idealnie */
-  display: block;
-  object-fit: cover;   /* Ścina białe tło obrazka dokładnie do kształtu ramki */
-  overflow: hidden;    /* Gwarantuje ukrycie nadmiaru białego tła */
-  background: #fff;    /* Zapewnia czyste białe tło pod grafiką wewnątrz elipsy */
-  
-  /* Gruba czarna ramka i brutalistyczny cień dopasowane do krawędzi grafiki */
-  border: 6px solid var(--black); 
-  border-radius: 100px; /* Duży stały promień idealnie docina owal grafiki */
-  box-shadow: 0 6px 0 var(--black); 
-  
-  /* Przesunięcie w dół, aby nakładało się na czerwone menu */
-  margin-bottom: -55px; 
+.logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 12vw, 110px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: var(--red);
+  text-shadow: 6px 6px 0 var(--black);
+  letter-spacing: -2px;
 }
 
 .logo-tagline {
@@ -134,19 +111,16 @@ header {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--black);
-  padding: 6px 0;
+  padding: 4px 0;
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
-  background: var(--yellow); 
-  margin-top: 10px;
 }
 
-/* === ODZNAKA "OD 1999" W PRAWYM GÓRNYM ROGU === */
 .header-badge {
-  position: absolute;
-  top: -10px;  
-  right: 0;    
-  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .badge-circle {
@@ -160,14 +134,14 @@ header {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow);
-  transform: rotate(-5deg); 
+  transform: rotate(-5deg);
   gap: 2px;
 }
 
 .badge-year {
   font-family: 'Special Elite', monospace;
   font-size: 11px;
-  color: var(--cream);
+  color: var(--cream); /* Lepsza czytelność */
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -180,6 +154,7 @@ header {
   line-height: 1;
 }
 
+/* === NAWIGACJA GŁÓWNA ===                                                             ///////////////////////////////////////TUTAJ//////////////////// */
 /* === NAWIGACJA GŁÓWNA === */
 nav {
   background: var(--red);
@@ -187,8 +162,6 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch; /* Rozciąga wszystko do tej samej wysokości */
-  position: relative;
-  z-index: 1; /* Gwarantuje, że menu chowa się pod wystającym logo */
 }
 
 .nav-links {
@@ -207,7 +180,7 @@ nav {
   color: var(--yellow);
   text-decoration: none;   /* Usuwa domyślne podkreślenie linków */
   background: transparent; /* Usuwa domyślne tło przycisków */
-  border: none;              /* Resetuje ramki */
+  border: none;             /* Resetuje ramki */
   padding: 14px 24px;
   cursor: pointer;
   display: flex;
@@ -262,41 +235,6 @@ nav {
   color: white;
   border-color: var(--red);
 }
-
-/* === RESPONSIVNOŚĆ === */
-@media (max-width: 720px) {
-  header {
-    padding: 20px 20px 0 20px;
-  }
-  .header-stripes {
-    margin-left: -20px;
-    margin-right: -20px;
-    margin-top: -20px;
-  }
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-  }
-  .header-badge {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-bottom: 20px;
-  }
-  .header-logo-img {
-    height: 110px; 
-    width: 165px;
-    margin-bottom: -30px;
-    border: 4px solid var(--black);
-  }
-  .logo-block {
-    align-items: center;
-  }
-  .logo-tagline {
-    text-align: center;
-  }
-
 
 /* === SECTIONS === */
 section {
@@ -1370,4 +1308,33 @@ footer a:hover { color: var(--yellow); }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   footer { padding: 32px 20px; }
 }
+/* === STYLIZACJA NOWEGO LOGO W NAGŁÓWKU === */
 
+/* Kontener linku wokół logo */
+.logo-main-link {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 0; /* Likwiduje niepotrzebny margines pod obrazkiem */
+  transition: transform 0.15s ease-in-out;
+}
+
+/* Subtelne powiększenie po najechaniu */
+.logo-main-link:hover {
+  transform: scale(1.02);
+}
+
+/* Nadanie odpowiednich wymiarów dla owalnego logo.png */
+.header-logo-img {
+  height: 90px;      /* Idealna wysokość pasująca do Twojego paska i odznaki 1999 */
+  width: auto;       /* Automatyczne zachowanie proporcji owalu */
+  max-width: 100%;   /* Żeby nie rozpychało ekranu na smartfonach */
+  display: block;
+}
+
+/* Poprawka dla urządzeń mobilnych – dbamy o to, by logo ładnie pasowało na małym ekranie */
+@media (max-width: 720px) {
+  .header-logo-img {
+    height: 70px;    /* Na telefonach delikatnie zmniejszamy wysokość obrazka */
+    margin: 0 auto;  /* Centrowanie na środku */
+  }
+}
