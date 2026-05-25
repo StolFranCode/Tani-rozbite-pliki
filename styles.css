@@ -163,7 +163,7 @@ nav {
   align-items: center;
 }
 
-nav a, .nav-koszyk {
+nav a {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -187,7 +187,15 @@ nav a:hover {
 }
 
 .nav-koszyk {
- align-items: right;
+   font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  text-decoration: none;
+  padding: 14px 24px;
+  border-right: 2px solid rgba(255,255,255,0.15);
+  transition: background 0.15s, color 0.15s;
 }
 
 /* === SECTIONS === */
