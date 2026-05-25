@@ -154,7 +154,7 @@ header {
   line-height: 1;
 }
 
-/* === NAV (Zabezpieczony układ z wyśrodkowanym koszykiem) === */
+/* === NAV  === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
@@ -163,7 +163,10 @@ nav {
   align-items: center;
 }
 
-nav a {
+/* Wspólny styl dla wszystkiego w menu: linków i przycisków */
+nav a,
+.koszyk-btn,
+.auth-btn {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -171,11 +174,21 @@ nav a {
   color: var(--yellow);
   text-decoration: none;
   padding: 14px 24px;
-  border-right: 2px solid rgba(255,255,255,0.15);
+  background: transparent;
+  border: none;
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%; /* Wyrównanie wysokości w flexboksie */
   transition: background 0.15s, color 0.15s;
+  border-radius: 0; /* Reset dla iOS */
 }
 
-nav a:hover {
+nav a:hover,
+.koszyk-btn:hover,
+.auth-btn:hover {
   background: var(--yellow);
   color: var(--black);
 }
@@ -187,13 +200,12 @@ nav a:hover {
 }
 
 .nav-koszyk {
-  margin-left: auto;
-  padding: 0 20px;
+  margin: 0 !important;
+  position: static !important;
+  transform: none !important;
   display: flex;
   align-items: center;
-  gap: 8px;
 }
-
 /* === SECTIONS === */
 section {
   padding: 60px 40px;
