@@ -56,27 +56,42 @@
 
 <nav role="navigation" aria-label="Menu główne">
   <div class="nav-links">
-    <button type="button" class="nav-btn">
+    <a href="#onas" class="nav-item">
       <span data-lang="pl" class="active">O nas</span>
       <span data-lang-inline="ua">Про нас</span>
       <span data-lang-inline="en">About</span>
-    </button>
-    <button type="button" class="nav-btn">
+    </a>
+    <a href="#oferta" class="nav-item">
       <span data-lang="pl" class="active">Oferta</span>
       <span data-lang-inline="ua">Асортимент</span>
       <span data-lang-inline="en">Products</span>
-    </button>
-    <button type="button" class="nav-btn">
+    </a>
+    <a href="#sklepy" class="nav-item">
       <span data-lang="pl" class="active">Sklepy</span>
       <span data-lang-inline="ua">Магазини</span>
       <span data-lang-inline="en">Locations</span>
-    </button>
-    <button type="button" class="nav-btn">
+    </a>
+    <a href="#kontakt" class="nav-item">
       <span data-lang="pl" class="active">Kontakt</span>
       <span data-lang-inline="ua">Контакт</span>
       <span data-lang-inline="en">Contact</span>
+    </a>
+  </div>
+
+  <div class="nav-koszyk">
+    <button class="auth-btn" id="authNavBtn" onclick="otworzAuth()">
+      <span data-lang="pl" class="active">Zaloguj się</span>
+      <span data-lang-inline="ua">Увійти</span>
+      <span data-lang-inline="en">Log in</span>
+    </button>
+    <button class="koszyk-btn" onclick="otworzKoszyk()" aria-label="Koszyk">
+      <span data-lang="pl" class="active">Koszyk</span>
+      <span data-lang-inline="ua">Кошик</span>
+      <span data-lang-inline="en">Cart</span>
+      <span class="koszyk-licznik" id="koszykLicznik">0</span>
     </button>
   </div>
+</nav>
 
 
 
