@@ -62,12 +62,12 @@ body {
 }
 
 /* === HEADER / SZYLD === */
+/* === HEADER / SZYLD === */
 header {
+  position: relative; /* Baza do pozycjonowania odznaki w prawym rogu */
   background: var(--yellow);
-  border-bottom: var(--border-thick);
-  padding: 0;
-  position: relative;
-  overflow: hidden;
+  padding: 30px 40px 0px 40px; /* Usunięty duży padding na dole, bo ujemny margines logo załatwi sprawę */
+  overflow: visible; /* KLUCZOWE: pozwala logo wystawać poza żółty pasek i nachodzić na menu */
 }
 
 .header-stripes {
@@ -78,31 +78,51 @@ header {
     var(--yellow) 20px, var(--yellow) 40px
   );
   border-bottom: var(--border);
+  margin-left: -40px;  /* Rozciągnięcie pasków do krawędzi okna, jeśli header ma padding */
+  margin-right: -40px;
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 
 .header-inner {
-  padding: 32px 40px 28px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  align-items: flex-start;
+  max-width: 100%;
+  position: relative; /* Kotwica dla odznaki */
 }
 
+/* === NOWE EMBLEMATOWE LOGO (OBRAZEK) === */
 .logo-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  z-index: 10; /* Wyciąga logo oraz podpis nad pasek nawigacji */
 }
 
-.logo-main {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(64px, 12vw, 110px);
-  font-weight: 900;
-  line-height: 0.9;
-  color: var(--red);
-  text-shadow: 6px 6px 0 var(--black);
-  letter-spacing: -2px;
+.logo-main-link {
+  display: block;
+  line-height: 0;
+  margin-bottom: 25px;
+  text-decoration: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.logo-main-link:hover {
+  transform: scale(1.03); /* Delikatne, sprężyste powiększenie przy najechaniu */
+}
+
+.header-logo-img {
+  height: 180px; /* Dokładnie taki potężny rozmiar jak na makiecie */
+  width: auto;   /* Zachowanie proporcji owalu */
+  display: block;
+  background: var(--yellow);
+  border-radius: 50%; /* Wymusza idealne ścięcie tła do owalu logo */
+  border: 6px solid var(--black); /* Gruba, komiksowa czarna ramka */
+  box-shadow: 0 6px 0 var(--black); /* Brutalistyczny, płaski cień pod logo */
+  
+  /* Magiczne przesunięcie w dół – sprawi, że logo pięknie przetnie pasek menu */
+  margin-bottom: -50px; 
 }
 
 .logo-tagline {
@@ -114,13 +134,15 @@ header {
   padding: 4px 0;
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
+  background: var(--yellow); /* Zapobiega prześwitywaniu innych elementów pod tekstem */
 }
 
+/* === ODZNAKA "OD 1999" W PRAWYM GÓRNYM ROGU === */
 .header-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  position: absolute;
+  top: -10px;  /* Przyklejenie do samej góry */
+  right: 0;    /* Przyklejenie do prawej krawędzi */
+  z-index: 5;
 }
 
 .badge-circle {
@@ -134,14 +156,14 @@ header {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow);
-  transform: rotate(-5deg);
+  transform: rotate(-5deg); /* Zachowany oryginalny, zawadiacki obrót */
   gap: 2px;
 }
 
 .badge-year {
   font-family: 'Special Elite', monospace;
   font-size: 11px;
-  color: var(--cream); /* Lepsza czytelność */
+  color: var(--cream);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -154,6 +176,44 @@ header {
   line-height: 1;
 }
 
+/* === ZABEZPIECZENIE WARSTW DLA NAVI === */
+nav {
+  position: relative;
+  z-index: 1; /* Gwarantuje, że menu siedzi pod wystającym obrazkiem logo, ale nad tłem strony */
+}
+
+/* === RESPONSYWNOŚĆ (Dla smartfonów) === */
+@media (max-width: 720px) {
+  header {
+    padding: 20px 20px 0 20px;
+  }
+  .header-stripes {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+  }
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-badge {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+  }
+  .header-logo-img {
+    height: 130px; /* Skalujemy logo na mniejszych ekranach, żeby nie zjadło całej przestrzeni */
+    margin-bottom: -35px;
+  }
+  .logo-block {
+    align-items: center;
+  }
+  .logo-tagline {
+    text-align: center;
+  }
+}
 /* === NAWIGACJA GŁÓWNA ===                                                             ///////////////////////////////////////TUTAJ//////////////////// */
 /* === NAWIGACJA GŁÓWNA === */
 nav {
@@ -1308,33 +1368,4 @@ footer a:hover { color: var(--yellow); }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   footer { padding: 32px 20px; }
 }
-/* === STYLIZACJA NOWEGO LOGO W NAGŁÓWKU === */
 
-/* Kontener linku wokół logo */
-.logo-main-link {
-  display: inline-block;
-  text-decoration: none;
-  line-height: 0; /* Likwiduje niepotrzebny margines pod obrazkiem */
-  transition: transform 0.15s ease-in-out;
-}
-
-/* Subtelne powiększenie po najechaniu */
-.logo-main-link:hover {
-  transform: scale(1.02);
-}
-
-/* Nadanie odpowiednich wymiarów dla owalnego logo.png */
-.header-logo-img {
-  height: 90px;      /* Idealna wysokość pasująca do Twojego paska i odznaki 1999 */
-  width: auto;       /* Automatyczne zachowanie proporcji owalu */
-  max-width: 100%;   /* Żeby nie rozpychało ekranu na smartfonach */
-  display: block;
-}
-
-/* Poprawka dla urządzeń mobilnych – dbamy o to, by logo ładnie pasowało na małym ekranie */
-@media (max-width: 720px) {
-  .header-logo-img {
-    height: 70px;    /* Na telefonach delikatnie zmniejszamy wysokość obrazka */
-    margin: 0 auto;  /* Centrowanie na środku */
-  }
-}
