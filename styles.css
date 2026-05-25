@@ -154,13 +154,14 @@ header {
   line-height: 1;
 }
 
+/* === NAWIGACJA GŁÓWNA ===                                                             ///////////////////////////////////////TUTAJ//////////////////// */
 /* === NAWIGACJA GŁÓWNA === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  align-items: stretch; /* Rozciąga wszystko do tej samej wysokości */
 }
 
 .nav-links {
@@ -168,8 +169,8 @@ nav {
   flex-wrap: wrap;
 }
 
-/* === WSPÓLNY STYL DLA WSZYSTKICH PRZYCISKÓW W MENU === */
-.nav-btn,
+/* === WSPÓLNY STYL: DLA LINKÓW PO LEWEJ I PRZYCISKÓW PO PRAWEJ === */
+.nav-item,
 .auth-btn,
 .koszyk-btn {
   font-family: 'Special Elite', monospace;
@@ -177,31 +178,33 @@ nav {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--yellow);
-  background: transparent; /* Usuwa domyślne szare tło przycisku */
-  border: none;             /* Usuwa domyślną ramkę przycisku */
+  text-decoration: none;   /* Usuwa domyślne podkreślenie linków */
+  background: transparent; /* Usuwa domyślne tło przycisków */
+  border: none;             /* Resetuje ramki */
   padding: 14px 24px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: background 0.15s, color 0.15s;
+  box-sizing: border-box;
 }
 
-/* === KRESKI ODDZIELAJĄCE === */
+/* === KRESKI ODDZIELAJĄCE (BRUTALISTYCZNY STYL) === */
 
-/* Przyciski po lewej mają kreskę po prawej stronie */
-.nav-btn {
+/* Linki po lewej mają kreskę z prawej strony */
+.nav-item {
   border-right: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Przyciski po prawej mają kreskę po lewej stronie */
+/* Przyciski po prawej mają kreskę z lewej strony */
 .auth-btn,
 .koszyk-btn {
   border-left: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-/* === EFEKT HOVER (Dla wszystkich taki sam) === */
-.nav-btn:hover,
+/* === IDENTYCZNY HOVER DLA CAŁEGO MENU === */
+.nav-item:hover,
 .auth-btn:hover,
 .koszyk-btn:hover {
   background: var(--yellow);
@@ -210,7 +213,7 @@ nav {
 
 /* === UKŁAD PRAWEJ STRONY === */
 .nav-koszyk {
-  margin-left: auto;
+  margin-left: auto; /* Popycha "Zaloguj się" i "Koszyk" do prawej krawędzi */
   display: flex;
   align-items: stretch;
 }
@@ -226,6 +229,7 @@ nav {
   font-family: Arial, sans-serif;
   font-weight: bold;
 }
+
 .koszyk-btn:hover .koszyk-licznik {
   background: var(--red);
   color: white;
