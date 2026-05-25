@@ -187,15 +187,11 @@ nav a:hover {
 }
 
 .nav-koszyk {
-   font-family: 'Special Elite', monospace;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  text-decoration: none;
-  padding: 14px 24px;
-  border-right: 2px solid rgba(255,255,255,0.15);
-  transition: background 0.15s, color 0.15s;
+  margin-left: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* === SECTIONS === */
