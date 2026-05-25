@@ -113,7 +113,7 @@ header {
 }
 
 .header-logo-img {
-  height: 400px !important; /* Wymusza 240px wysokości (wcześniej było 160px) */
+  height: 250px !important; /* Wymusza 240px wysokości (wcześniej było 160px) */
   width: auto !important;   /* Automatycznie skaluje szerokość, aby nie spłaszczyć owalu */
   display: block !important;
   max-width: none !important; /* Resetuje ewentualne blokady typu max-width: 100% z innych klas */
