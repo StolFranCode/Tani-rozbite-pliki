@@ -163,7 +163,7 @@ nav {
   align-items: center;
 }
 
-nav a {
+nav a, .nav-koszyk {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -175,7 +175,7 @@ nav a {
   transition: background 0.15s, color 0.15s;
 }
 
-nav a:hover {
+nav a, .nav-koszyk:hover {
   background: var(--yellow);
   color: var(--black);
 }
@@ -187,11 +187,7 @@ nav a:hover {
 }
 
 .nav-koszyk {
-  margin-left: auto;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+ align-items: right;
 }
 
 /* === SECTIONS === */
