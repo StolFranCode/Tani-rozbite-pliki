@@ -160,7 +160,7 @@ nav {
   border-bottom: var(--border);
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch; /* WAŻNE: rozciąga przyciski do pełnej wysokości paska */
+  align-items: stretch;
 }
 
 .nav-links {
@@ -168,46 +168,18 @@ nav {
   flex-wrap: wrap;
 }
 
-/* === LEWA STRONA: Linki === */
-nav a {
+/* === WSPÓLNY STYL DLA WSZYSTKICH PRZYCISKÓW W MENU === */
+.nav-btn,
+.auth-btn,
+.koszyk-btn {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--yellow);
-  text-decoration: none;
+  background: transparent; /* Usuwa domyślne szare tło przycisku */
+  border: none;             /* Usuwa domyślną ramkę przycisku */
   padding: 14px 24px;
-  border-right: 2px solid rgba(255, 255, 255, 0.15);
-  transition: background 0.15s, color 0.15s;
-  display: flex;
-  align-items: center;
-}
-
-nav a:hover {
-  background: var(--yellow);
-  color: var(--black);
-}
-
-/* === PRAWA STRONA: Kontener akcji === */
-.nav-koszyk {
-  margin-left: auto; /* Popycha cały kontener do prawej */
-  display: flex;
-  align-items: stretch; /* Przycisk zaloguj i koszyk dostaną pełną wysokość */
-}
-
-/* === PRZYCISKI: Identyczny styl jak nav a === */
-.auth-btn,
-.koszyk-btn {
-  font-family: 'Special Elite', monospace;
-  font-size: 13px;         /* Taka sama wielkość */
-  letter-spacing: 0.12em;  /* Taki sam rozstaw */
-  text-transform: uppercase;
-  color: var(--yellow);
-  background: transparent;
-  border: none;
-  /* Kreska z lewej strony, żeby oddzielić przyciski od siebie i od środka menu */
-  border-left: 2px solid rgba(255, 255, 255, 0.15); 
-  padding: 14px 24px;      /* Identyczny padding */
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   display: flex;
@@ -215,14 +187,35 @@ nav a:hover {
   gap: 8px;
 }
 
-/* Identyczny efekt najechania myszką */
+/* === KRESKI ODDZIELAJĄCE === */
+
+/* Przyciski po lewej mają kreskę po prawej stronie */
+.nav-btn {
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Przyciski po prawej mają kreskę po lewej stronie */
+.auth-btn,
+.koszyk-btn {
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* === EFEKT HOVER (Dla wszystkich taki sam) === */
+.nav-btn:hover,
 .auth-btn:hover,
 .koszyk-btn:hover {
   background: var(--yellow);
   color: var(--black);
 }
 
-/* Stylizacja licznika, żeby nie rozpychał kafelka */
+/* === UKŁAD PRAWEJ STRONY === */
+.nav-koszyk {
+  margin-left: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+/* === LICZNIK KOSZYKA === */
 .koszyk-licznik {
   background: var(--black);
   color: var(--yellow);
@@ -230,11 +223,9 @@ nav a:hover {
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 11px;
-  font-family: Arial, sans-serif; /* Prosty font dla czytelności cyfr */
+  font-family: Arial, sans-serif;
   font-weight: bold;
 }
-
-/* Gdy najeżdżasz na koszyk, licznik też zmienia kolory dla kontrastu */
 .koszyk-btn:hover .koszyk-licznik {
   background: var(--red);
   color: white;
