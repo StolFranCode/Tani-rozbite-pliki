@@ -1308,3 +1308,33 @@ footer a:hover { color: var(--yellow); }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   footer { padding: 32px 20px; }
 }
+/* === STYLIZACJA NOWEGO LOGO W NAGŁÓWKU === */
+
+/* Kontener linku wokół logo */
+.logo-main-link {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 0; /* Likwiduje niepotrzebny margines pod obrazkiem */
+  transition: transform 0.15s ease-in-out;
+}
+
+/* Subtelne powiększenie po najechaniu */
+.logo-main-link:hover {
+  transform: scale(1.02);
+}
+
+/* Nadanie odpowiednich wymiarów dla owalnego logo.png */
+.header-logo-img {
+  height: 90px;      /* Idealna wysokość pasująca do Twojego paska i odznaki 1999 */
+  width: auto;       /* Automatyczne zachowanie proporcji owalu */
+  max-width: 100%;   /* Żeby nie rozpychało ekranu na smartfonach */
+  display: block;
+}
+
+/* Poprawka dla urządzeń mobilnych – dbamy o to, by logo ładnie pasowało na małym ekranie */
+@media (max-width: 720px) {
+  .header-logo-img {
+    height: 70px;    /* Na telefonach delikatnie zmniejszamy wysokość obrazka */
+    margin: 0 auto;  /* Centrowanie na środku */
+  }
+}
