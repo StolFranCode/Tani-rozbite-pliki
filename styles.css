@@ -63,11 +63,10 @@ body {
 
 /* === HEADER / SZYLD === */
 header {
+  position: relative; /* Baza do pozycjonowania odznaki w prawym rogu */
   background: var(--yellow);
-  border-bottom: var(--border-thick);
-  padding: 0;
-  position: relative;
-  overflow: hidden;
+  padding: 30px 40px 20px 40px; /* Zwiększony dolny padding dla stabilizacji układu */
+  overflow: visible; 
 }
 
 .header-stripes {
@@ -78,31 +77,48 @@ header {
     var(--yellow) 20px, var(--yellow) 40px
   );
   border-bottom: var(--border);
+  margin-left: -40px;  
+  margin-right: -40px;
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 
 .header-inner {
-  padding: 32px 40px 28px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  align-items: flex-start;
+  max-width: 100%;
+  position: relative; 
 }
 
+/* === WYŚRODKOWANE I POWIĘKSZONE LOGO === */
 .logo-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center; /* KLUCZOWE: Środkuje logo i napis względem siebie */
+  z-index: 10; 
+  margin-bottom: 10px;
 }
 
-.logo-main {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(64px, 12vw, 110px);
-  font-weight: 900;
-  line-height: 0.9;
-  color: var(--red);
-  text-shadow: 6px 6px 0 var(--black);
-  letter-spacing: -2px;
+.logo-main-link {
+  display: block;
+  line-height: 0;
+  margin-bottom: 15px;
+  text-decoration: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.logo-main-link:hover {
+  transform: scale(1.03); 
+}
+
+.header-logo-img {
+  height: 240px;       /* Zwiększone o 50% (z wcześniejszych 160px) */
+  width: auto;         /* Automatyczne zachowanie idealnych proporcji owalu */
+  display: block;
+  background: transparent; 
+  
+  /* Usunięto border i border-radius, by zachować czysty, oryginalny kształt logotypu bez docinania */
 }
 
 .logo-tagline {
@@ -111,16 +127,20 @@ header {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--black);
-  padding: 4px 0;
+  padding: 6px 0;
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
+  background: var(--yellow); 
+  margin-top: 5px;
+  text-align: center; /* Centrowanie tekstu wewnątrz linii */
 }
 
+/* === ODZNAKA "OD 1999" W PRAWYM GÓRNYM ROGU === */
 .header-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  position: absolute;
+  top: -10px;  
+  right: 0;    
+  z-index: 5;
 }
 
 .badge-circle {
@@ -134,14 +154,14 @@ header {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow);
-  transform: rotate(-5deg);
+  transform: rotate(-5deg); 
   gap: 2px;
 }
 
 .badge-year {
   font-family: 'Special Elite', monospace;
   font-size: 11px;
-  color: var(--cream); /* Lepsza czytelność */
+  color: var(--cream);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -154,14 +174,15 @@ header {
   line-height: 1;
 }
 
-/* === NAWIGACJA GŁÓWNA ===                                                             ///////////////////////////////////////TUTAJ//////////////////// */
 /* === NAWIGACJA GŁÓWNA === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch; /* Rozciąga wszystko do tej samej wysokości */
+  align-items: stretch; 
+  position: relative;
+  z-index: 1; 
 }
 
 .nav-links {
@@ -169,7 +190,7 @@ nav {
   flex-wrap: wrap;
 }
 
-/* === WSPÓLNY STYL: DLA LINKÓW PO LEWEJ I PRZYCISKÓW PO PRAWEJ === */
+/* === WSPÓLNY STYL NAWIGACJI === */
 .nav-item,
 .auth-btn,
 .koszyk-btn {
@@ -178,9 +199,9 @@ nav {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--yellow);
-  text-decoration: none;   /* Usuwa domyślne podkreślenie linków */
-  background: transparent; /* Usuwa domyślne tło przycisków */
-  border: none;             /* Resetuje ramki */
+  text-decoration: none;   
+  background: transparent; 
+  border: none;              
   padding: 14px 24px;
   cursor: pointer;
   display: flex;
@@ -190,20 +211,15 @@ nav {
   box-sizing: border-box;
 }
 
-/* === KRESKI ODDZIELAJĄCE (BRUTALISTYCZNY STYL) === */
-
-/* Linki po lewej mają kreskę z prawej strony */
 .nav-item {
   border-right: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Przyciski po prawej mają kreskę z lewej strony */
 .auth-btn,
 .koszyk-btn {
   border-left: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-/* === IDENTYCZNY HOVER DLA CAŁEGO MENU === */
 .nav-item:hover,
 .auth-btn:hover,
 .koszyk-btn:hover {
@@ -211,14 +227,12 @@ nav {
   color: var(--black);
 }
 
-/* === UKŁAD PRAWEJ STRONY === */
 .nav-koszyk {
-  margin-left: auto; /* Popycha "Zaloguj się" i "Koszyk" do prawej krawędzi */
+  margin-left: auto; 
   display: flex;
   align-items: stretch;
 }
 
-/* === LICZNIK KOSZYKA === */
 .koszyk-licznik {
   background: var(--black);
   color: var(--yellow);
@@ -234,6 +248,32 @@ nav {
   background: var(--red);
   color: white;
   border-color: var(--red);
+}
+
+/* === RESPONSIVNOŚĆ === */
+@media (max-width: 720px) {
+  header {
+    padding: 20px 20px 10px 20px;
+  }
+  .header-stripes {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+  }
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .header-badge {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 10px;
+  }
+  .header-logo-img {
+    height: 160px; /* Responsywne zmniejszenie ogromnego logo na mobile */
+  }
 }
 
 /* === SECTIONS === */
