@@ -113,12 +113,12 @@ header {
 }
 
 .header-logo-img {
-  height: 400px;       /* Zwiększone o 50% (z wcześniejszych 160px) */
-  width: auto;         /* Automatyczne zachowanie idealnych proporcji owalu */
-  display: block;
-  background: transparent; 
+  height: 400px !important; /* Wymusza 240px wysokości (wcześniej było 160px) */
+  width: auto !important;   /* Automatycznie skaluje szerokość, aby nie spłaszczyć owalu */
+  display: block !important;
+  max-width: none !important; /* Resetuje ewentualne blokady typu max-width: 100% z innych klas */
+  background: transparent !important;
   
-  /* Usunięto border i border-radius, by zachować czysty, oryginalny kształt logotypu bez docinania */
 }
 
 .logo-tagline {
