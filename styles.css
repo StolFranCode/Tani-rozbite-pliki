@@ -11,9 +11,15 @@
   --shadow-red: 5px 5px 0 #D91B1B;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+}
 
 body {
   background: var(--cream);
@@ -21,8 +27,8 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 16px;
   line-height: 1.6;
-  /* subtle noise texture */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  /* Zoptymalizowana tekstura szumu (numOctaves gładniejsze dla CPU) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 /* === LANGUAGE SWITCHER === */
@@ -44,7 +50,7 @@ body {
   padding: 4px 12px;
   border: 1.5px solid #555;
   background: transparent;
-  color: #aaa;
+  color: #ddd; /* Poprawiony kontrast */
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.15s;
@@ -135,7 +141,7 @@ header {
 .badge-year {
   font-family: 'Special Elite', monospace;
   font-size: 11px;
-  color: #ffd;
+  color: var(--cream); /* Lepsza czytelność */
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -148,13 +154,13 @@ header {
   line-height: 1;
 }
 
-/* === NAV === */
+/* === NAV (Zabezpieczony układ z wyśrodkowanym koszykiem) === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  align-items: center;
 }
 
 nav a {
@@ -172,6 +178,20 @@ nav a {
 nav a:hover {
   background: var(--yellow);
   color: var(--black);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.nav-koszyk {
+  margin-left: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* === SECTIONS === */
@@ -206,13 +226,6 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: start;
-}
-
-@media (max-width: 680px) {
-  .about-grid { grid-template-columns: 1fr; }
-  section { padding: 40px 20px; }
-  .header-inner { padding: 24px 20px 20px; }
-  nav a { padding: 12px 16px; font-size: 11px; }
 }
 
 .about-text p {
@@ -294,10 +307,6 @@ h2 {
   padding: 60px 40px;
 }
 
-@media (max-width: 680px) {
-  #oferta .inner { padding: 40px 20px; }
-}
-
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -341,10 +350,6 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   margin-bottom: 40px;
-}
-
-@media (max-width: 680px) {
-  .shops-grid { grid-template-columns: 1fr; }
 }
 
 .shop-card {
@@ -442,10 +447,6 @@ h2 {
   grid-template-columns: 1fr 1.4fr;
   gap: 48px;
   align-items: start;
-}
-
-@media (max-width: 680px) {
-  .contact-grid { grid-template-columns: 1fr; }
 }
 
 .contact-info h3 {
@@ -603,27 +604,6 @@ footer {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
-}
-
-@media (max-width: 680px) {
-  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
-  footer { padding: 32px 20px; }
-}
-
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  font-weight: 900;
-  color: var(--yellow);
-  line-height: 1;
-  text-shadow: 3px 3px 0 var(--red);
-}
-
-.footer-copy {
-  font-size: 13px;
-  color: #888;
-  margin-top: 12px;
-  line-height: 1.7;
 }
 
 footer h4 {
@@ -796,12 +776,6 @@ footer a:hover { color: var(--yellow); }
 }
 
 /* === KOSZYK — IKONA W NAV === */
-.nav-koszyk {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .koszyk-btn {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
@@ -1099,19 +1073,61 @@ footer a:hover { color: var(--yellow); }
   padding-bottom: 4px;
   border-bottom: 2px solid var(--yellow);
 }
-.radio-group { display: flex; flex-direction: column; gap: 8px; }
+.radio-group { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+  align-items: flex-start;
+  max-width: 420px;
+}
 .radio-label {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: 14px;
+  padding: 12px 16px;
   border: var(--border);
   cursor: pointer;
-  transition: background 0.1s;
+  font-family: 'Special Elite', monospace;
   font-size: 14px;
+  letter-spacing: 0.04em;
+  background: var(--offwhite);
+  box-shadow: var(--shadow);
+  transition: transform 0.1s, background 0.1s;
 }
-.radio-label:hover { background: var(--cream2); }
-.radio-label input { accent-color: var(--red); }
+.radio-label:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--black); }
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 3px solid var(--black);
+  background: #fff;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  border-radius: 0;
+}
+.radio-label input[type="radio"]:checked {
+  background: var(--yellow);
+}
+.radio-label input[type="radio"]:checked::after {
+  content: "✕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+}
+.radio-label:has(input:checked) {
+  background: var(--cream2);
+  border-color: var(--red);
+}
 
 .zamow-podsumowanie {
   background: var(--black);
@@ -1213,76 +1229,40 @@ footer a:hover { color: var(--yellow); }
 }
 .btn-dodaj:hover { background: var(--yellow); color: var(--black); }
 .btn-dodaj.dodano { background: green; color: #fff; border-color: green; }
+
 /* === TRANSLATIONS === */
 [data-lang] { display: none; }
 [data-lang].active { display: block; }
 [data-lang-inline] { display: none; }
 [data-lang-inline].active { display: inline; }
 
-/* === MODYFIKACJE: NAW WYŚRODKOWANE PRZYCISKI === */
-nav { position: relative; justify-content: flex-start; }
-.nav-koszyk {
-  margin-left: auto !important;
-  margin-right: auto !important;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+/* === MEDIA QUERIES (RWD) === */
 @media (max-width: 720px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-links {
+    flex-direction: column;
+  }
+  nav a {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+  }
   .nav-koszyk {
-    position: static;
-    transform: none;
-    margin: 8px auto !important;
+    margin: 12px auto;
+    padding: 0;
   }
 }
 
-/* === MODYFIKACJE: WIDOCZNE KWADRATY (radio) WYŚRODKOWANE NA LEWO === */
-.radio-group {
-  align-items: flex-start;
-  max-width: 420px;
-}
-.radio-label {
-  width: 100%;
-  gap: 14px;
-  padding: 12px 16px;
-  font-family: 'Special Elite', monospace;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  background: var(--offwhite);
-  box-shadow: var(--shadow);
-  transition: transform 0.1s, background 0.1s;
-}
-.radio-label:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--black); }
-.radio-label input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  border: 3px solid var(--black);
-  background: #fff;
-  cursor: pointer;
-  margin: 0;
-  position: relative;
-  border-radius: 0;
-}
-.radio-label input[type="radio"]:checked {
-  background: var(--yellow);
-}
-.radio-label input[type="radio"]:checked::after {
-  content: "✕";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 900;
-  color: var(--red);
-  line-height: 1;
-}
-.radio-label:has(input:checked) {
-  background: var(--cream2);
-  border-color: var(--red);
+@media (max-width: 680px) {
+  .about-grid { grid-template-columns: 1fr; }
+  section { padding: 40px 20px; }
+  .header-inner { padding: 24px 20px 20px; }
+  #oferta .inner { padding: 40px 20px; }
+  .shops-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+  footer { padding: 32px 20px; }
 }
