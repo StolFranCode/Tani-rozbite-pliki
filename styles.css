@@ -113,7 +113,7 @@ header {
 }
 
 .header-logo-img {
-  height: 240px;       /* Zwiększone o 50% (z wcześniejszych 160px) */
+  height: 400px;       /* Zwiększone o 50% (z wcześniejszych 160px) */
   width: auto;         /* Automatyczne zachowanie idealnych proporcji owalu */
   display: block;
   background: transparent; 
