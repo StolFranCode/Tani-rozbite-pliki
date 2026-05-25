@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TANI — Sklep Osiedlowy | Rabka-Zdrój</title>
-<meta name="description" content="Sklep osiedlowy TANI w Rabce-Zdroju. Warzywa, chemia, artykuły spożywcze. Działamy od 1999 roku."/>
-<meta property="og:title" content="TANI — Sklep Osiedlowy | Rabka-Zdrój"/>
-<meta property="og:description" content="Warzywa, chemia, artykuły spożywcze. Dwa sklepy w Rabce-Zdroju i Skawie. Rodzinna tradycja od 1999 roku."/>
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://tanirabka.pl"/>
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="TANI — Sklep Osiedlowy"/>
-<meta name="twitter:description" content="Rodzinny sklep osiedlowy w Rabce-Zdroju i Skawie. Tradycja od 1999."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Libre+Baskerville:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TANI — Sklep Osiedlowy | Rabka-Zdrój</title>
+  <meta name="description" content="Sklep osiedlowy TANI w Rabce-Zdroju. Warzywa, chemia, artykuły spożywcze. Działamy od 1999 roku."/>
+  <meta property="og:title" content="TANI — Sklep Osiedlowy | Rabka-Zdrój"/>
+  <meta property="og:description" content="Warzywa, chemia, artykuły spożywcze. Dwa sklepy w Rabce-Zdroju i Skawie. Rodzinna tradycja od 1999 roku."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://tanirabka.pl"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="TANI — Sklep Osiedlowy"/>
+  <meta name="twitter:description" content="Rodzinny sklep osiedlowy w Rabce-Zdroju and Skawie. Tradycja od 1999."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Libre+Baskerville:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<!-- LANGUAGE BAR -->
+
 <div class="lang-bar" role="navigation" aria-label="Wybór języka">
   <button class="lang-btn active" onclick="setLang('pl')" aria-label="Polski">PL</button>
   <button class="lang-btn" onclick="setLang('ua')" aria-label="Українська">UA</button>
   <button class="lang-btn" onclick="setLang('en')" aria-label="English">EN</button>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-stripes"></div>
   <div class="header-inner">
@@ -55,28 +54,30 @@
   </div>
 </header>
 
-<!-- NAV -->
 <nav role="navigation" aria-label="Menu główne">
-  <a href="#onas">
-    <span data-lang="pl" class="active">O nas</span>
-    <span data-lang-inline="ua">Про нас</span>
-    <span data-lang-inline="en">About</span>
-  </a>
-  <a href="#oferta">
-    <span data-lang="pl" class="active">Oferta</span>
-    <span data-lang-inline="ua">Асортимент</span>
-    <span data-lang-inline="en">Products</span>
-  </a>
-  <a href="#sklepy">
-    <span data-lang="pl" class="active">Sklepy</span>
-    <span data-lang-inline="ua">Магазини</span>
-    <span data-lang-inline="en">Locations</span>
-  </a>
-  <a href="#kontakt">
-    <span data-lang="pl" class="active">Kontakt</span>
-    <span data-lang-inline="ua">Контакт</span>
-    <span data-lang-inline="en">Contact</span>
-  </a>
+  <div class="nav-links">
+    <a href="#onas">
+      <span data-lang="pl" class="active">O nas</span>
+      <span data-lang-inline="ua">Про нас</span>
+      <span data-lang-inline="en">About</span>
+    </a>
+    <a href="#oferta">
+      <span data-lang="pl" class="active">Oferta</span>
+      <span data-lang-inline="ua">Асортимент</span>
+      <span data-lang-inline="en">Products</span>
+    </a>
+    <a href="#sklepy">
+      <span data-lang="pl" class="active">Sklepy</span>
+      <span data-lang-inline="ua">Магазини</span>
+      <span data-lang-inline="en">Locations</span>
+    </a>
+    <a href="#kontakt">
+      <span data-lang="pl" class="active">Kontakt</span>
+      <span data-lang-inline="ua">Контакт</span>
+      <span data-lang-inline="en">Contact</span>
+    </a>
+  </div>
+
   <div class="nav-koszyk">
     <button class="auth-btn" id="authNavBtn" onclick="otworzAuth()">
       <span data-lang="pl" class="active">Zaloguj się</span>
@@ -95,10 +96,7 @@
 
 <hr class="divider"/>
 
-<!-- O NAS -->
 <section id="onas">
-
-  <!-- POLISH -->
   <div data-lang="pl" class="active">
     <div class="section-label">— Kim jesteśmy</div>
     <h2>Twój sklep od ćwierć wieku</h2>
@@ -151,7 +149,6 @@
     </div>
   </div>
 
-  <!-- UKRAINIAN -->
   <div data-lang="ua">
     <div class="section-label">— Хто ми</div>
     <h2>Ваш магазин вже чверть століття</h2>
@@ -203,7 +200,6 @@
     </div>
   </div>
 
-  <!-- ENGLISH -->
   <div data-lang="en">
     <div class="section-label">— Who we are</div>
     <h2>Your local store for over a quarter century</h2>
@@ -255,12 +251,10 @@
       </div>
     </div>
   </div>
-
 </section>
 
 <hr class="divider"/>
 
-<!-- OFERTA -->
 <section id="oferta">
   <div class="inner">
     <div data-lang="pl" class="active">
@@ -275,7 +269,6 @@
       <div class="section-label">— What we offer</div>
       <h2>Our products</h2>
     </div>
-
     <div id="produkty-container">
       <p style="font-family:'Special Elite',monospace;letter-spacing:0.1em;color:var(--red);">
         ⏳ Ładowanie produktów...
@@ -283,41 +276,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <hr class="divider"/>
 
@@ -406,7 +364,7 @@
       allowfullscreen=""
       referrerpolicy="no-referrer-when-downgrade"
       title="Lokalizacja sklepów TANI">
-     </iframe>
+    </iframe>
   </div>
 </section>
 
