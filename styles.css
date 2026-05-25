@@ -113,15 +113,15 @@ header {
 
 .header-logo-img {
   height: 160px;       /* Stabilna, potężna wysokość */
-  width: auto;         /* Zachowuje naturalne, oryginalne proporcje owalu */
+  width: 240px;        /* Dokładne proporcje owalu logo.png, żeby object-fit działał idealnie */
   display: block;
-  
-  /* USUNIĘTO border-radius: 50% - dzięki temu owal nie jest zniekształcony */
-  background: transparent; 
+  object-fit: cover;   /* Ścina białe tło obrazka dokładnie do kształtu ramki */
+  overflow: hidden;    /* Gwarantuje ukrycie nadmiaru białego tła */
+  background: #fff;    /* Zapewnia czyste białe tło pod grafiką wewnątrz elipsy */
   
   /* Gruba czarna ramka i brutalistyczny cień dopasowane do krawędzi grafiki */
   border: 6px solid var(--black); 
-  border-radius: 100px; /* Duży promień zamiast procentów idealnie otuli Twój owal */
+  border-radius: 100px; /* Duży stały promień idealnie docina owal grafiki */
   box-shadow: 0 6px 0 var(--black); 
   
   /* Przesunięcie w dół, aby nakładało się na czerwone menu */
@@ -180,46 +180,6 @@ header {
   line-height: 1;
 }
 
-/* === ASPEKTY WARSTW DLA NAVI === */
-nav {
-  position: relative;
-  z-index: 1; 
-}
-
-/* === RESPONSIVNOŚĆ === */
-@media (max-width: 720px) {
-  header {
-    padding: 20px 20px 0 20px;
-  }
-  .header-stripes {
-    margin-left: -20px;
-    margin-right: -20px;
-    margin-top: -20px;
-  }
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-  }
-  .header-badge {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-bottom: 20px;
-  }
-  .header-logo-img {
-    height: 110px; 
-    margin-bottom: -30px;
-    border: 4px solid var(--black);
-  }
-  .logo-block {
-    align-items: center;
-  }
-  .logo-tagline {
-    text-align: center;
-  }
-}
-/* === NAWIGACJA GŁÓWNA ===                                                             ///////////////////////////////////////TUTAJ//////////////////// */
 /* === NAWIGACJA GŁÓWNA === */
 nav {
   background: var(--red);
@@ -227,6 +187,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch; /* Rozciąga wszystko do tej samej wysokości */
+  position: relative;
+  z-index: 1; /* Gwarantuje, że menu chowa się pod wystającym logo */
 }
 
 .nav-links {
@@ -245,7 +207,7 @@ nav {
   color: var(--yellow);
   text-decoration: none;   /* Usuwa domyślne podkreślenie linków */
   background: transparent; /* Usuwa domyślne tło przycisków */
-  border: none;             /* Resetuje ramki */
+  border: none;              /* Resetuje ramki */
   padding: 14px 24px;
   cursor: pointer;
   display: flex;
@@ -300,6 +262,41 @@ nav {
   color: white;
   border-color: var(--red);
 }
+
+/* === RESPONSIVNOŚĆ === */
+@media (max-width: 720px) {
+  header {
+    padding: 20px 20px 0 20px;
+  }
+  .header-stripes {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+  }
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .header-badge {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+  }
+  .header-logo-img {
+    height: 110px; 
+    width: 165px;
+    margin-bottom: -30px;
+    border: 4px solid var(--black);
+  }
+  .logo-block {
+    align-items: center;
+  }
+  .logo-tagline {
+    text-align: center;
+  }
+
 
 /* === SECTIONS === */
 section {
