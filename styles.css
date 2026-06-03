@@ -27,7 +27,6 @@ body {
   font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 16px;
   line-height: 1.6;
-  /* Zoptymalizowana tekstura szumu (numOctaves gładniejsze dla CPU) */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
@@ -50,7 +49,7 @@ body {
   padding: 4px 12px;
   border: 1.5px solid #555;
   background: transparent;
-  color: #ddd; /* Poprawiony kontrast */
+  color: #ddd;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.15s;
@@ -63,9 +62,9 @@ body {
 
 /* === HEADER / SZYLD === */
 header {
-  position: relative; /* Baza do pozycjonowania odznaki w prawym rogu */
+  position: relative;
   background: var(--yellow);
-  padding: 30px 40px 20px 40px; /* Zwiększony dolny padding dla stabilizacji układu */
+  padding: 30px 40px 20px 40px;
   overflow: visible; 
 }
 
@@ -85,27 +84,26 @@ header {
 
 .header-inner {
   display: flex;
-  justify-content: center; /* KLUCZOWE: Popycha cały blok logo idealnie na środek baneru */
+  justify-content: center;
   align-items: center;
   max-width: 100%;
-  position: relative;     /* Trzyma odznakę w ryzach absolutnego pozycjonowania */
+  position: relative;
 }
 
-/* === WYŚRODKOWANE I POWIĘKSZONE LOGO === */
 .logo-block {
   display: flex;
   flex-direction: column;
-  align-items: center;    /* Środkuje obrazek i tekst w pionowej osi */
+  align-items: center;
   text-align: center;
   z-index: 10;
   margin-bottom: 10px;
 }
 
 .logo-main-link {
-  display: block;
-  line-height: 0;
-  margin-bottom: 20px;   /* Przestrzeń między logotypem a linią podpisu */
+  display: inline-block;
   text-decoration: none;
+  line-height: 0;
+  margin-bottom: 20px;
   transition: transform 0.15s ease-in-out;
 }
 
@@ -114,32 +112,31 @@ header {
 }
 
 .header-logo-img {
-  height: 250px !important;    /* Duży, mięsisty rozmiar zgodnie z planem (+50%) */
-  width: auto !important;      /* Pilnuje, by owal nie został zniekształcony */
-  display: block !important;
-  max-width: none !important;
-  background: transparent !important;
+  height: 90px;
+  width: auto;
+  max-width: 100%;
+  display: block;
 }
 
 .logo-tagline {
   font-family: 'Special Elite', monospace;
-  font-size: clamp(14px, 2vw, 18px); /* Delikatnie podbity rozmiar dla lepszego balansu */
+  font-size: clamp(14px, 2vw, 18px);
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--black);
-  padding: 6px 15px;          /* Dodany padding boczny, by linie ramki ładnie wystawały poza tekst */
+  padding: 6px 15px;
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
   background: var(--yellow);
   margin-top: 5px;
-  display: inline-block;       /* Sprawia, że linie dopasowują się do długości tekstu */
+  display: inline-block;
 }
 
-/* === ODZNAKA "OD 1999" W PRAWYM GÓRNYM ROGU === */
+/* === ODZNAKA "OD 1999" === */
 .header-badge {
   position: absolute;
   top: -10px;  
-  right: 0;    /* Przyklejona do prawej strony, podczas gdy środek baneru należy do logo */
+  right: 0;
   z-index: 5;
 }
 
@@ -174,7 +171,7 @@ header {
   line-height: 1;
 }
 
-/* === NAWIGACJA GŁÓWNA === */
+/* === NAWIGACJA === */
 nav {
   background: var(--red);
   border-bottom: var(--border);
@@ -190,7 +187,6 @@ nav {
   flex-wrap: wrap;
 }
 
-/* === WSPÓLNY STYL NAWIGACJI === */
 .nav-item,
 .auth-btn,
 .koszyk-btn {
@@ -234,27 +230,41 @@ nav {
 }
 
 .koszyk-licznik {
-  background: var(--black);
-  color: var(--yellow);
-  border: 1px solid var(--yellow);
+  background: var(--red);
+  color: #fff;
   border-radius: 50%;
-  padding: 2px 6px;
+  width: 20px;
+  height: 20px;
   font-size: 11px;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Special Elite', monospace;
 }
+.koszyk-licznik.widoczny { display: flex; }
 
 .koszyk-btn:hover .koszyk-licznik {
-  background: var(--red);
-  color: white;
-  border-color: var(--red);
+  background: var(--black);
+  border-color: var(--black);
 }
 
-/* === RESPONSIVNOŚĆ === */
+.auth-btn {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  background: transparent;
+  border: 1.5px solid #555;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+.auth-btn:hover { color: var(--yellow); border-color: var(--yellow); }
+
+/* === RESPONSYWNOŚĆ HEADER === */
 @media (max-width: 720px) {
-  header {
-    padding: 20px 20px 10px 20px;
-  }
+  header { padding: 20px 20px 10px 20px; }
   .header-stripes {
     margin-left: -20px;
     margin-right: -20px;
@@ -271,9 +281,7 @@ nav {
     right: 0;
     margin-bottom: 10px;
   }
-  .header-logo-img {
-    height: 160px; /* Responsywne zmniejszenie ogromnego logo na mobile */
-  }
+  .header-logo-img { height: 70px; margin: 0 auto; }
 }
 
 /* === SECTIONS === */
@@ -302,7 +310,7 @@ h2 {
   padding-left: 16px;
 }
 
-/* === HERO / ABOUT === */
+/* === ABOUT === */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -316,6 +324,7 @@ h2 {
   line-height: 1.75;
 }
 
+/* === FACT CARDS — z hover efektem === */
 .fact-card {
   background: var(--black);
   color: var(--yellow);
@@ -323,6 +332,14 @@ h2 {
   padding: 24px 28px;
   box-shadow: var(--shadow-red);
   margin-bottom: 20px;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.fact-card:hover {
+  transform: translate(-4px, -4px) scale(1.02);
+  box-shadow: 9px 9px 0 var(--red);
+  background: #2a1a0a;
 }
 
 .fact-card strong {
@@ -341,12 +358,20 @@ h2 {
   color: #ccc;
 }
 
+/* === OWNER BOX — z hover efektem === */
 .owner-box {
   background: var(--yellow);
   border: var(--border-thick);
   padding: 24px 28px;
   box-shadow: var(--shadow);
   position: relative;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.owner-box:hover {
+  transform: translate(-4px, -4px) scale(1.02);
+  box-shadow: 9px 9px 0 var(--black);
 }
 
 .owner-box::before {
@@ -375,7 +400,7 @@ h2 {
   margin-bottom: 4px;
 }
 
-/* === CATEGORIES === */
+/* === OFERTA === */
 #oferta {
   background: var(--cream2);
   max-width: 100%;
@@ -426,7 +451,7 @@ h2 {
   line-height: 1.4;
 }
 
-/* === SKLEPY / LOCATIONS === */
+/* === SKLEPY === */
 .shops-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -468,9 +493,7 @@ h2 {
   line-height: 1.4;
 }
 
-.shop-body {
-  padding: 20px;
-}
+.shop-body { padding: 20px; }
 
 .shop-body p {
   font-size: 14px;
@@ -523,7 +546,7 @@ h2 {
   filter: sepia(20%) contrast(95%);
 }
 
-/* === KONTAKT / FORMULARZ === */
+/* === KONTAKT === */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -602,34 +625,6 @@ input:focus, textarea:focus, select:focus {
 
 textarea { min-height: 120px; resize: vertical; }
 
-.form-lang-select {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-}
-
-.lang-radio {
-  display: none;
-}
-
-.lang-radio-label {
-  border: 2px solid var(--black);
-  padding: 8px;
-  text-align: center;
-  cursor: pointer;
-  font-family: 'Special Elite', monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  background: var(--cream);
-  transition: background 0.1s;
-}
-
-.lang-radio:checked + .lang-radio-label {
-  background: var(--yellow);
-  border-color: var(--black);
-  font-weight: bold;
-}
-
 .submit-btn {
   background: var(--red);
   color: var(--yellow);
@@ -655,7 +650,6 @@ textarea { min-height: 120px; resize: vertical; }
   box-shadow: 2px 2px 0 var(--black);
 }
 
-/* === SUCCESS MESSAGE === */
 .form-success {
   display: none;
   background: var(--yellow);
@@ -686,6 +680,22 @@ footer {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--yellow);
+  line-height: 1;
+  text-shadow: 3px 3px 0 var(--red);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #888;
+  margin-top: 12px;
+  line-height: 1.7;
 }
 
 footer h4 {
@@ -780,7 +790,9 @@ footer a:hover { color: var(--yellow); }
   gap: 16px;
   margin-bottom: 32px;
 }
+
 .kat-sekcja { margin-bottom: 8px; }
+
 .kat-tytul {
   font-family: 'Special Elite', monospace;
   font-size: 13px;
@@ -792,19 +804,25 @@ footer a:hover { color: var(--yellow); }
   padding-bottom: 6px;
   border-bottom: 2px solid var(--yellow);
 }
+
 .produkt-karta {
   border: var(--border);
   padding: 16px;
   background: var(--cream);
   box-shadow: 3px 3px 0 var(--black);
   position: relative;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
 }
+
 .produkt-karta:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--red);
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--red);
 }
+
 .produkt-karta.przecena { border-color: var(--red); }
+
 .przecena-badge {
   position: absolute;
   top: -10px;
@@ -817,6 +835,7 @@ footer a:hover { color: var(--yellow); }
   padding: 2px 8px;
   border: 2px solid var(--black);
 }
+
 .produkt-nazwa {
   font-family: 'Playfair Display', serif;
   font-size: 16px;
@@ -824,12 +843,14 @@ footer a:hover { color: var(--yellow); }
   margin-bottom: 6px;
   line-height: 1.3;
 }
+
 .produkt-opis {
   font-size: 13px;
   color: #666;
   margin-bottom: 10px;
   line-height: 1.4;
 }
+
 .produkt-cena {
   display: flex;
   align-items: center;
@@ -837,18 +858,22 @@ footer a:hover { color: var(--yellow); }
   flex-wrap: wrap;
   margin-top: auto;
 }
+
 .stara-cena {
   font-size: 13px;
   color: #999;
   text-decoration: line-through;
 }
+
 .nowa-cena {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--red);
 }
+
 #produkty-container { margin-top: 16px; }
+
 .brak-produktow {
   font-family: 'Special Elite', monospace;
   letter-spacing: 0.1em;
@@ -856,52 +881,6 @@ footer a:hover { color: var(--yellow); }
   padding: 32px 0;
   text-align: center;
 }
-
-/* === KOSZYK — IKONA W NAV === */
-.koszyk-btn {
-  font-family: 'Special Elite', monospace;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  color: var(--yellow);
-  background: transparent;
-  border: 2px solid var(--yellow);
-  padding: 8px 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.15s, color 0.15s;
-  text-decoration: none;
-}
-.koszyk-btn:hover { background: var(--yellow); color: var(--black); }
-.koszyk-licznik {
-  background: var(--red);
-  color: #fff;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Special Elite', monospace;
-  display: none;
-}
-.koszyk-licznik.widoczny { display: flex; }
-
-.auth-btn {
-  font-family: 'Special Elite', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: #aaa;
-  background: transparent;
-  border: 1.5px solid #555;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-transform: uppercase;
-}
-.auth-btn:hover { color: var(--yellow); border-color: var(--yellow); }
 
 /* === PANEL BOCZNY KOSZYK === */
 .koszyk-overlay {
@@ -1191,9 +1170,7 @@ footer a:hover { color: var(--yellow); }
   position: relative;
   border-radius: 0;
 }
-.radio-label input[type="radio"]:checked {
-  background: var(--yellow);
-}
+.radio-label input[type="radio"]:checked { background: var(--yellow); }
 .radio-label input[type="radio"]:checked::after {
   content: "✕";
   position: absolute;
@@ -1318,63 +1295,28 @@ footer a:hover { color: var(--yellow); }
 [data-lang-inline] { display: none; }
 [data-lang-inline].active { display: inline; }
 
-/* === MEDIA QUERIES (RWD) === */
+/* === MEDIA QUERIES === */
 @media (max-width: 720px) {
-  nav {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .nav-links {
-    flex-direction: column;
-  }
+  nav { flex-direction: column; align-items: stretch; }
+  .nav-links { flex-direction: column; }
   nav a {
     border-right: none;
     border-bottom: 1px solid rgba(255,255,255,0.15);
     text-align: center;
   }
-  .nav-koszyk {
-    margin: 12px auto;
-    padding: 0;
-  }
+  .nav-koszyk { margin: 12px auto; padding: 0; }
 }
 
 @media (max-width: 680px) {
   .about-grid { grid-template-columns: 1fr; }
   section { padding: 40px 20px; }
-  .header-inner { padding: 24px 20px 20px; }
   #oferta .inner { padding: 40px 20px; }
   .shops-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   footer { padding: 32px 20px; }
 }
-/* === STYLIZACJA NOWEGO LOGO W NAGŁÓWKU === */
 
-/* Kontener linku wokół logo */
-.logo-main-link {
-  display: inline-block;
-  text-decoration: none;
-  line-height: 0; /* Likwiduje niepotrzebny margines pod obrazkiem */
-  transition: transform 0.15s ease-in-out;
-}
-
-/* Subtelne powiększenie po najechaniu */
-.logo-main-link:hover {
-  transform: scale(1.02);
-}
-
-/* Nadanie odpowiednich wymiarów dla owalnego logo.png */
-.header-logo-img {
-  height: 90px;      /* Idealna wysokość pasująca do Twojego paska i odznaki 1999 */
-  width: auto;       /* Automatyczne zachowanie proporcji owalu */
-  max-width: 100%;   /* Żeby nie rozpychało ekranu na smartfonach */
-  display: block;
-}
-
-/* Poprawka dla urządzeń mobilnych – dbamy o to, by logo ładnie pasowało na małym ekranie */
-@media (max-width: 720px) {
-  .header-logo-img {
-    height: 70px;    /* Na telefonach delikatnie zmniejszamy wysokość obrazka */
-    margin: 0 auto;  /* Centrowanie na środku */
-  }
+@media (max-width: 480px) {
+  .footer-logo { font-size: 36px; }
 }
