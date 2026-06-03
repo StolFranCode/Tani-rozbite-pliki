@@ -112,10 +112,11 @@ header {
 }
 
 .header-logo-img {
-  height: 90px;
+  height: 170px;
   width: auto;
   max-width: 100%;
   display: block;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.35));
 }
 
 .logo-tagline {
